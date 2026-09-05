@@ -1,0 +1,67 @@
+using System;
+using UnityEngine;
+
+namespace FPS.Player
+{
+    public class PlayerHealth : MonoBehaviour, FPS.Combat.IDamageable
+    {
+        [Header("Health")]
+        [SerializeField] private int maxHealth = 100;
+        [SerializeField] private bool destroyOnDeath = false;
+
+        public event Action OnDamaged;
+        public event Action OnDied;
+
+        public int CurrentHealth { get; private set; }
+        public int MaxHealth => maxHealth;
+        public bool IsDead { get; private set; } = false;
+
+        private void Awake()
+        {
+            CurrentHealth = maxHealth;
+        }
+
+        public void TakeDamage(int amount, Vector3 hitPoint, Transform attacker)
+        {
+            if (IsDead || amount <= 0)
+                return;
+
+            CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
+            OnDamaged?.Invoke();
+
+            if (CurrentHealth <= 0)
+                Die();
+        }
+
+        public void Heal(int amount)
+        {
+            if (IsDead || amount <= 0)
+                return;
+
+            CurrentHealth = Mathf.Min(maxHealth, CurrentHealth + amount);
+        }
+
+        public void RestoreFull()
+        {
+            CurrentHealth = maxHealth;
+            IsDead = false;
+        }
+
+        public float GetNormalized()
+        {
+            return maxHealth <= 0 ? 0f : (float)CurrentHealth / maxHealth;
+        }
+
+        private void Die()
+        {
+            if (IsDead)
+                return;
+
+            IsDead = true;
+            OnDied?.Invoke();
+
+            if (destroyOnDeath)
+                Destroy(gameObject, 3f);
+        }
+    }
+}
