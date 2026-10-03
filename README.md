@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/abdoulrl2028-cloud-Dev/abdoulrl2028-cloud-Dev/main/assets/projects/fps.jpg" alt="FPS 3D em Unity" width="100%">
+</p>
+
 # FPS 3D — Jogo de Ação em Unity
 
 Jogo FPS 3D completo e jogável criado em **Unity 6000.0.83f1** com C#.
