@@ -1,125 +1,91 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/abdoulrl2028-cloud-Dev/abdoulrl2028-cloud-Dev/main/assets/projects/fps.jpg" alt="FPS 3D em Unity" width="100%">
+  <img src="https://raw.githubusercontent.com/abdoulrl2028-cloud-Dev/abdoulrl2028-cloud-Dev/main/assets/projects/fps.jpg" alt="FPS 3D in Unity" width="100%">
 </p>
 
-# FPS 3D — Jogo de Ação em Unity
+# FPS 3D — Unity action game
 
-Jogo FPS 3D completo e jogável criado em **Unity 6000.0.83f1** com C#.
-O jogador atravessa um mapa urbano/rural, enfrenta inimigos com IA, passa por
-checkpoints e completa a missão.
+A playable 3D FPS built in **Unity 6000.0.83f1** with C#.
+The player moves through an urban and rural map, fights AI enemies, passes checkpoints, and finishes the mission.
 
----
+## Open the project
 
-## Como abrir o projeto
+1. Install **Unity Hub** and version **6000.0.83f1**.
+2. In Unity Hub, choose **Open** and select the `FPS 3D/FPS 3D` folder.
+3. Wait for packages to import and for the scripts to compile.
 
-1. Instale o **Unity Hub** e a versão **6000.0.83f1**.
-2. No Unity Hub → **Open** → selecione a pasta `FPS 3D/FPS 3D`.
-3. Aguarde o import dos pacotes e a compilação.
+> On the first open, the project **edits and saves the scene** `Assets/Scenes/Level01.unity` automatically. The menu `FPS → Build FPS Scene` runs the same process by hand. Wait for `[FPS] Scene built successfully!` in the Console.
 
-> Na primeira abertura o projeto **edita e salva automaticamente a cena**
-> `Assets/Scenes/Level01.unity` (menu `FPS → Build FPS Scene` executa o mesmo
-> processo manualmente). Aguarde a mensagem
-> `[FPS] Scene built successfully!` no Console.
+> **Packages:** `com.unity.ugui` and `com.unity.cloud.gltfast` download through the Package Manager. If the Editor is already open, click the Unity window to refresh the packages.
 
-> **Pacotes**: `com.unity.ugui` e `com.unity.cloud.gltfast` serão baixados
-> automaticamente pelo Package Manager. Se o Editor estiver aberto, clique na
-> janela do Unity para forçar o download/refresh dos pacotes.
+## Play
 
-## Como executar
+1. Open `Assets/Scenes/Level01.unity`.
+2. Press **Play**.
+3. The HUD (health, ammo, crosshair) and the enemies are already active.
 
-1. Abra a cena `Assets/Scenes/Level01.unity` (duplo clique).
-2. Pressione **Play** no topo do Editor.
-3. O jogo já começa com a UI (vida, munição, mira) e inimigos ativos.
+> **Enemy navigation (NavMesh):** the mesh is baked when the scene is built. If you move obstacles, run `FPS → Build FPS Scene` again.
 
-> **Navegação dos inimigos (NavMesh)**: a malha é gerada automaticamente na
-> construção da cena. Se você mover obstáculos, use `FPS → Build FPS Scene`
-> novamente para rebake.
+## Controls
 
-## Controles do jogador
+| Action | Key |
+| --- | --- |
+| Move | `W A S D` |
+| Sprint | Left `Shift` + WASD |
+| Jump | `Space` |
+| Look | Mouse |
+| Shoot | Left mouse button |
+| Weapon 1 (pistol) | `1` |
+| Weapon 2 (rifle) | `2` |
+| Weapon 3 (shotgun) | `3` |
+| Reload | `R` |
+| Pause | `Esc` |
+| Restart (game over / mission) | `R` |
 
-| Ação            | Tecla(s)                     |
-|-----------------|------------------------------|
-| Mover           | `W A S D`                    |
-| Correr          | `Shift (esquerdo)` + WASD    |
-| Pular           | `Espaço`                     |
-| Olhar           | Movimento do mouse           |
-| Atirar          | Botão esquerdo do mouse      |
-| Arma 1 (Pistola)| `1`                          |
-| Arma 2 (Rifle)  | `2`                          |
-| Arma 3 (Espingarda) | `3`                      |
-| Recarregar      | `R`                          |
-| Pausar          | `Esc`                        |
-| Reiniciar (Game Over / Missão) | `R`   |
-
-## Estrutura de pastas
+## Folder layout
 
 ```
 Assets/
 ├─ Scripts/
-│  ├─ Player/        FpsPlayerController, PlayerDeathHandler, PlayerMovement,
-│  │                 PlayerLook, PlayerHealth
+│  ├─ Player/        FpsPlayerController, PlayerDeathHandler, PlayerMovement, PlayerLook, PlayerHealth
 │  ├─ Weapons/       WeaponData (SO), WeaponController, WeaponEntry
 │  ├─ Enemies/       EnemyAI, EnemyHealth
 │  ├─ Systems/       HealthSystem, IDamageable, Checkpoint, GameManager, MusicPlayer
 │  └─ UI/            FpsHud, PauseMenu, GameOverMenu, MissionCompleteMenu
 ├─ Editor/
-│  ├─ FpsSceneBuilder.cs     Constrói a cena Level01 (primitivos + wire-up)
-│  ├─ FpsCityProps.cs        Insere os modelos reais baixados (Poly Haven)
-│  ├─ FpsAudioGenerator.cs   Gera música e efeitos sonoros (WAV)
-│  └─ ProjectScaffolder.cs   Cria cenas/builder settings/prefab básico do Player
-├─ Scenes/           Level01.unity
-├─ Prefabs/          WeaponData_*.asset (pistola, rifle, espingarda)
-├─ Materials/        Environment/ (cenário), Characters/ (inimigos), Weapons/
-├─ Models/
-│  └─ Environment/   Modelos reais CC0 (Poly Haven): postes, bancos, barreiras,
-│                    fachada de prédio, postes de energia e rato de rua (.gltf)
-├─ Prefabs/
-│  ├─ Player/        BasicPlayer.prefab (CharacterController + câmera + scripts)
-│  └─ Weapons/       WeaponData_Pistol/Rifle/Shotgun.asset
-├─ Scenes/           MainMenu.unity, Level01.unity (principal), Level02..07,
-│                    Test/TestScene.unity
-├─ Textures/         Environment/, Characters/, Weapons/
-└─ UI/               Images/, Fonts/, Icons/
+│  ├─ FpsSceneBuilder.cs     Builds the Level01 scene
+│  ├─ FpsCityProps.cs        Places downloaded Poly Haven models
+│  ├─ FpsAudioGenerator.cs   Generates music and sound effects (WAV)
+│  └─ ProjectScaffolder.cs   Creates scenes, builder settings, and a basic player prefab
+├─ Models/Environment/       CC0 Poly Haven models
+├─ Prefabs/                  Weapon data and the player prefab
+├─ Materials/                Environment, characters, and weapons
+├─ Scenes/                   MainMenu, Level01 (main), Level02..07, Test
+├─ Textures/
+└─ UI/
 ```
 
-## Descrição dos principais scripts
+## Main scripts
 
-- **FpsPlayerController** — movimento WASD, correr, pular, gravidade, câmera
-  com mouse (CharacterController + rotação vertical limitada).
-- **WeaponController / WeaponData** — sistema modular de armas: dano, cadência,
-  alcance, carregador, munição reserva, tempo de recarga, "pellets"/spread
-  (espingarda). Novas armas = novo `WeaponData` + entrada na lista.
-- **HealthSystem** — vida genérica reutilizável para Player e inimigos
-  (implementa `IDamageable`), eventos `OnDamaged/OnHealed/OnDied`.
-- **EnemyAI** — IA em NavMesh com patrulha, detecção por distância + campo de
-  visão, perseguição e ataque corpo a corpo; morre e para de agir.
-- **FpsHud** — barra e número de vida, munição/reserva, nome da arma, mira,
-  mensagens (recarga / sem munição / checkpoint).
-- **GameManager** — estado do jogo, pausa, Game Over, restart no último
-  checkpoint, conclusão da missão, cursor do mouse.
-- **FpsSceneBuilder (Editor)** — cria a cena inteira com referências corretas
-  e bake de NavMesh; executado automaticamente na primeira abertura.
-- **FpsCityProps (Editor)** — coloca os modelos 3D reais baixados na rua
-  (use o menu `FPS → Place Real City Props (Poly Haven)`).
+- **FpsPlayerController** — WASD movement, sprint, jump, gravity, and mouse look.
+- **WeaponController / WeaponData** — modular weapons: damage, fire rate, range, magazine, reserve ammo, reload time, and shotgun spread. A new weapon is a new `WeaponData` plus a list entry.
+- **HealthSystem** — shared health for the player and enemies (`IDamageable`), with `OnDamaged`, `OnHealed`, and `OnDied`.
+- **EnemyAI** — NavMesh patrol, distance and view detection, chase, and melee. The enemy stops when it dies.
+- **FpsHud** — health bar, ammo, weapon name, crosshair, and status messages.
+- **GameManager** — pause, game over, restart at the last checkpoint, mission complete, and cursor lock.
+- **FpsSceneBuilder** — builds the scene and bakes the NavMesh. It runs on the first open.
+- **FpsCityProps** — places real 3D models on the street (`FPS → Place Real City Props (Poly Haven)`).
 
-## Como adicionar novas armas
+## Add a weapon
 
-1. Crie um `WeaponData` (Assets → Create → FPS → Weapon Data) ou reutilize o
-   menu `FPS → Build FPS Scene` (recria pistola/rifle/espingarda).
-2. Atribua `slot` único (1, 2, 3...) — a troca usa as teclas 1–3.
-3. Vincule um `WeaponEntry` (data + view + audioSource) no `WeaponController`
-   do Player; no script a troca é automática por `GetSlotKey`.
+1. Create a `WeaponData` asset (`Assets → Create → FPS → Weapon Data`), or run `FPS → Build FPS Scene` to recreate the pistol, rifle, and shotgun.
+2. Give it a unique `slot` (1, 2, 3). Keys 1–3 switch weapons.
+3. Add a `WeaponEntry` (data, view, and audio source) on the player's `WeaponController`.
 
-## Como usar seus próprios modelos 3D reais
+## Use your own 3D models
 
-Coloque arquivos importáveis pelo Unity (`.glb`/`.gltf` com o pacote glTFast,
-ou `.fbx`/`.obj`) em `Assets/Environment/Imported/`. O script
-`FpsCityProps` carrega os modelos a partir dessa pasta. Para substituir o
-visual do Player/inimigos por humanos, basta colocar o modelo como filho do
-`Player` (ou da cápsula do inimigo) e ocultar o primitivo padrão.
+Put Unity-importable files (`.glb` / `.gltf` with glTFast, or `.fbx` / `.obj`) in `Assets/Environment/Imported/`. `FpsCityProps` loads models from that folder. To replace the player or enemy look, parent the model to the player or the enemy capsule and hide the default primitive.
 
-## Créditos dos assets reais
+## Asset credits
 
-Modelos da rua/cidade: **Poly Haven** (modelos CC0 — street lamp, bench, road
-barrier, electricity poles, urban apartments facade, street rat.
-https://polyhaven.com/). Música e efeitos: gerados proceduralmente no projeto.
+Street and city models: **Poly Haven** (CC0). Music and effects are generated inside the project.
+https://polyhaven.com/
